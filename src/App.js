@@ -11,7 +11,7 @@ function App() {
     <div className='tc'>
       <Navbar />
       <Feed />
-      <Scroll>
+      <Scroll >
       <PostList posts={posts} />
       </Scroll>
     </div>

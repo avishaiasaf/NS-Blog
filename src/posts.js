@@ -1,7 +1,7 @@
 export const posts = [
     {
         id: 1,
-        title: 'How to work with SDF',
+        title: 'How to work with',
         body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
                  Molestias aut, repellat ipsum facere voluptate dicta 
                  obcaecati deserunt nobis suscipit eaque?`
@@ -22,6 +22,34 @@ export const posts = [
     },
     {
         id: 4,
+        title: 'Saved Searches',
+        body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
+                 Molestias aut, repellat ipsum facere voluptate dicta 
+                 obcaecati deserunt nobis suscipit eaque?`
+    },
+    {
+        id: 5,
+        title: 'Saved Searches',
+        body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
+                 Molestias aut, repellat ipsum facere voluptate dicta 
+                 obcaecati deserunt nobis suscipit eaque?`
+    },
+    {
+        id: 6,
+        title: 'Saved Searches',
+        body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
+                 Molestias aut, repellat ipsum facere voluptate dicta 
+                 obcaecati deserunt nobis suscipit eaque?`
+    },
+    {
+        id: 7,
+        title: 'Saved Searches',
+        body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
+                 Molestias aut, repellat ipsum facere voluptate dicta 
+                 obcaecati deserunt nobis suscipit eaque?`
+    },
+    {
+        id: 8,
         title: 'Saved Searches',
         body: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
                  Molestias aut, repellat ipsum facere voluptate dicta 
