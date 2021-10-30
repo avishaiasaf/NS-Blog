@@ -1,0 +1,17 @@
+.post{
+    background-color: #63B2F3;
+}
+
+.bt {
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
+.bb {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.b--black-10 {
+    border-color: rgba(0, 0, 0, .1);
+}
