@@ -1,15 +1,15 @@
 import React from 'react';
 import './PostCard.css';
 
-const PostCard = ({ title, summary, body, author, id })=>{
+const PostCard = ({ title, summary, body, author, id, onPostClick })=>{
     return (
-        <article className="bb b--black-10 dib br3 pa3 ma2 grow bw2 shadow-1" id={id}>
+        <article className="bb b--black-10 dib br3 pa3 ma2 grow bw2 shadow-1" id={id} onClick={onPostClick}>
         <a className="db pv4 ph3 ph0-l no-underline black dim" href="#0">
           <div className="flex flex-column flex-row-ns">
             <div className="pr3-ns mb4 mb0-ns w-100 w-40-ns">
               <img src="http://mrmrs.github.io/photos/whale.jpg" className="db" alt="Photo of a whale's tale coming crashing out of the water." />
             </div>
-            <div className="w-100 w-60-ns pl3-ns">
+            <div className="w-100 w-60-ns pl3-ns" id={id} >
               <h1 className="f3 fw1 baskerville mt0 lh-title">{title}</h1>
               <p className="f6 f5-l lh-copy">
                 {summary}
