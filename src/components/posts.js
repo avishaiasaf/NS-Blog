@@ -7,6 +7,10 @@ export const posts = [
                  obcaecati deserunt nobis suscipit eaque?`,
         author: 'Avishai Asaf',
         body: ''
+        // body: {
+        //     text_0: 'This is the start of the article',
+        //     img_0: 'http://mrmrs.github.io/photos/whale.jpg'
+        // }
     },
     {
         id: 2,

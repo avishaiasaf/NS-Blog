@@ -11,6 +11,19 @@ import Footer from './components/Footer/Footer';
 import PostPage from './components/PostPage/PostPage';
 import { Component } from 'react';
 
+const initialState = {
+  input: '',
+      posts: [],
+      post: '',
+      isSignedIn: false,
+      route: 'home',
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: ''
+      }
+}
 class App extends Component {
   constructor(){
     super();
@@ -39,12 +52,12 @@ class App extends Component {
   }
 
   onLoginClick = (event)=>{
-    console.log(event.target);
+    //console.log(event.target);
     this.setState({route: 'home', isSignedIn: true});
   }
 
   onLogout = ()=>{
-    this.setState({isSignedIn: false});
+    this.setState(initialState);
   }
 
   onPostClick = (event)=>{
