@@ -9,6 +9,7 @@ import SearchField from './components/SearchField/SearchField';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 import PostPage from './components/PostPage/PostPage';
+import Register from './components/Register/Register';
 import { Component } from 'react';
 
 const initialState = {
@@ -42,6 +43,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    window.scrollTo(0, 0);
+  }
+
   onInputChange = (event)=>{
     console.log(event.target.value);
     this.setState({input: event.target.value});
@@ -49,6 +54,10 @@ class App extends Component {
 
   onLogin = ()=>{
     this.setState({route: 'login'});
+  }
+
+  registerClick = ()=>{
+    this.setState({route: 'register'})
   }
 
   onLoginClick = (event)=>{
@@ -63,6 +72,7 @@ class App extends Component {
   onPostClick = (event)=>{
     console.log(event.currentTarget.id);
     this.setState({route: 'post', post: posts[event.currentTarget.id-1]});
+    window.scrollTo(0, 0);
   }
 
   onPostReturn = ()=>{
@@ -71,7 +81,7 @@ class App extends Component {
 
   render(){
     const filteredPosts = posts.filter((post)=>{
-      return post.body.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase()) || post.title.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase());
+      return post.summary.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase()) || post.title.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase());
     });
 
     const router = ()=>{
@@ -84,7 +94,9 @@ class App extends Component {
                 </div>
               );
         case 'login':
-          return <Login onLoginClick={this.onLoginClick} />
+          return <Login onLoginClick={this.onLoginClick} registerClick={this.registerClick} />
+        case 'register':
+          return <Register onLoginClick={this.onLoginClick} />
         default:
           return <PostPage post={this.state.post} onPostReturn={this.onPostReturn} />
       }
@@ -95,6 +107,7 @@ class App extends Component {
           isSignedIn={this.state.isSignedIn} 
           onLogin={this.onLogin} 
           onLogout={this.onLogout}
+          onBlog={this.onPostReturn}
         />
         <Feed />
         {

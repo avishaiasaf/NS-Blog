@@ -17,6 +17,7 @@ const PostList = ({posts, onPostClick})=>{
                         author={posts[i].author}
                         id={posts[i].id}
                         onPostClick={onPostClick}
+                        img={posts[i].img}
                         />
                         
                     );
