@@ -3,13 +3,14 @@ import './App.css';
 import PostList from './components/PostList/PostList';
 import {posts} from './components/posts.js';
 import Navbar from './components/Navbar/Navbar';
-import Scroll from './components/Scroll/Scroll';
+//import Scroll from './components/Scroll/Scroll';
 import Feed from './components/Feed/Feed';
 import SearchField from './components/SearchField/SearchField';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 import PostPage from './components/PostPage/PostPage';
 import Register from './components/Register/Register';
+import Home from './components/Home/Home';
 import { Component } from 'react';
 
 const initialState = {
@@ -65,6 +66,11 @@ class App extends Component {
     this.setState({route: 'home', isSignedIn: true});
   }
 
+  setUser = (user)=>{
+    this.setState({user: user});
+    console.log(this.state.user);
+  }
+
   onLogout = ()=>{
     this.setState(initialState);
   }
@@ -76,7 +82,7 @@ class App extends Component {
   }
 
   onPostReturn = ()=>{
-    this.setState({route: 'home', input: ''});
+    this.setState({route: 'blog', input: ''});
   }
 
   render(){
@@ -89,12 +95,18 @@ class App extends Component {
         case 'home':
               return (
                 <div>
-                  <SearchField onInputChange={this.onInputChange} searchTitle={'Look for content: '}/>
-                  <PostList posts={filteredPosts} onPostClick={this.onPostClick} /> 
+                  <Home />
                 </div>
               );
+        case 'blog':
+          return (
+                <div>
+                  <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
+                  <PostList posts={filteredPosts} onPostClick={this.onPostClick} /> 
+                </div>
+          );
         case 'login':
-          return <Login onLoginClick={this.onLoginClick} registerClick={this.registerClick} />
+          return <Login onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.registerClick} />
         case 'register':
           return <Register onLoginClick={this.onLoginClick} />
         default:
@@ -108,6 +120,8 @@ class App extends Component {
           onLogin={this.onLogin} 
           onLogout={this.onLogout}
           onBlog={this.onPostReturn}
+          onHome={this.onLoginClick}
+          user={this.state.user}
         />
         <Feed />
         {

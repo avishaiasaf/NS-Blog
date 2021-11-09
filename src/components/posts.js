@@ -1,22 +1,24 @@
 import encapList from '../images/encapsulateList.png';
 import emTemp from '../images/emailTemplate.png';
+import logoEmail from '../images/email_pic.jpeg';
+import logoSdf from '../images/sdf_pic.jpeg';
 
 export const posts = [
     {
         id: 1,
         title: 'Printing Custom Lists into PDF or Email Templates',
         summary: `If you ever used the PDF generator to create a transaction template, 
-                    you are probably familiar with the list FreeMarker element used to drill down lists and print those line by line. 
-                    However, when trying to use the same mechanism with a custom list on a certain record, something is not quite sure working. `,
+                    you are probably familiar with the list FreeMarker element used to drill down lists and print those line by line. `,
         author: 'Avishai Asaf',
-        img: encapList,
+        date: '01/01/2021',
+        img: logoEmail,
         body: [
             {
                 type: 'text',
                 content: `*Overview:*\n
                 If you ever used the PDF generator to create a transaction template, you are probably familiar with the list FreeMarker element used to drill down lists and print those line by line. However, when trying to use the same mechanism with a custom list on a certain record, something is not quite sure working. 
                 *Solution:*\n
-                *Step 1*\n\n encapsulate the custom list into a JSON shaped structure and store it in a Custom Field (e.g., custbody_customlist)
+                *Step 1*\n\n encapsulate the custom list into a JSON shaped structure and store it in a Custom Field _(e.g., custbody_customlist)_
                 `
             },
             {
@@ -40,7 +42,7 @@ export const posts = [
                  Molestias aut, repellat ipsum facere voluptate dicta 
                  obcaecati deserunt nobis suscipit eaque?`,
         author: 'Avishai Asaf',
-        img: encapList,
+        img: logoSdf,
         body: [
             {
                 type: 'text',

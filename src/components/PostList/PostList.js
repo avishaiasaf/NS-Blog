@@ -3,8 +3,8 @@ import Post from '../PostCard/PostCard';
 
 const PostList = ({posts, onPostClick})=>{
     return (
-        <div className='tc'>
-            <section class="mw7 center avenir">
+        <div className='w-60 center'>
+            {/* <section class="mw7 center avenir w70"> */}
             <h2 className="baskerville fw1 ph3 ph0-l">Recently Posted</h2>
             {
                 posts.map((post, i)=>{
@@ -18,12 +18,13 @@ const PostList = ({posts, onPostClick})=>{
                         id={posts[i].id}
                         onPostClick={onPostClick}
                         img={posts[i].img}
+                        date={posts[i].date}
                         />
                         
                     );
                 })
             }
-            </section>
+            {/* </section> */}
         </div>
     );
 }

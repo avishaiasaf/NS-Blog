@@ -33,13 +33,14 @@ class Login extends Component{ //({ onLoginClick })=>{
             console.log(user, 'login', user.length);
             if(user.email){
                 this.props.onLoginClick();
+                this.props.setUser(user);
             }
         })
         .catch(err => {console.log('oops something is wrong')})
     }
 
     render(){
-        const { onLoginClick, registerClick } = this.props;
+        const { registerClick } = this.props;
         return (
             <main class="pa4 black-80">
                 <div class="measure center">

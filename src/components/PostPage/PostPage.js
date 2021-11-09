@@ -8,21 +8,26 @@ const PostPage = ({ post, onPostReturn })=>{
         <div className='center w-60'>
             <a href="#" class="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right" onClick={onPostReturn}>Return</a>
             <h1>{post.title}</h1>
+            <br />
+            <h3>By {post.author} - {post.date}</h3>
+            <br />
             {/* <p>{post.summary}</p> */}
             {
                 post.body.map((element, i)=>{
-                    if(post.body[i].type=='text') {
+                    if(post.body[i].type==='text') {
                         return(
                         <PostTextElement text={post.body[i].content} />
                         );
-                    }else if(post.body[i].type=='image'){
+                    }else if(post.body[i].type==='image'){
                         return (
                             <PostImageElement imgSrc={post.body[i].content} />
                         );
+                    }else{
+                        return
                     }
                 })
             }
-            <p>{post.author}</p>
+            
             <a href="#" class="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2" onClick={onPostReturn}>Return</a>
             <br />
         </div>

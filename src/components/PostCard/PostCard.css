@@ -15,3 +15,8 @@
 .b--black-10 {
     border-color: rgba(0, 0, 0, .1);
 }
+
+.mm{
+    margin-left: 50px;
+    margin-right: 50px;
+}

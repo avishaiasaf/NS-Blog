@@ -1,30 +1,50 @@
 import React from 'react';
 import './PostCard.css';
 
-const PostCard = ({ title, summary, body, author, id, onPostClick, img })=>{
+//br1 dib grow shadow-1 ma2 center
+
+const PostCard = ({ title, summary, body, author, id, onPostClick, img, date })=>{
     return (
-        <article className="bb b--black-10 dib br3 pa3 ma2 grow bw2 shadow-1" id={id} onClick={onPostClick}>
-        <a className="db pv4 ph3 ph0-l no-underline black dim" href="#0">
-          <div className="flex flex-column flex-row-ns">
-            <div className="pr3-ns mb4 mb0-ns w-100 w-40-ns">
-              <img src={img} className="db" alt="Photo of a whale's tale coming crashing out of the water." />
-            </div>
-            <div className="w-100 w-60-ns pl3-ns" id={id} >
-              <h1 className="f3 fw1 baskerville mt0 lh-title">{title}</h1>
-              <p className="f6 f5-l lh-copy">
-                {summary}
-              </p>
-              <p className="f6 lh-copy mv0">By {author}</p>
-            </div>
+      <article className="ma3 dit-l br1 grow shadow-1" style={{width:'320px'}} id={id} onClick={onPostClick}>
+      <img src={img} className="db w-100 br2 br--top" alt=""  />
+      <div className="pa2 ph3-ns pb3-ns">
+        <div className="dt w-100 mt1">
+          <div className="dtc">
+            <h1 className="f5 f4-ns mv0">{title}</h1>
           </div>
-        </a>
-      </article>
+          <div className="dtc tr">
+            
+          </div>
+        </div>
+        <p className="f6 lh-copy measure mt2 mid-gray">
+          {summary}
+        </p>
+        <h5 className=" mv0">{author} - {date}</h5>
+      </div>
+    </article>
     );
 }
 
 export default PostCard;
 
-        // <div classNameName='post dib br3 pa3 ma2 grow bw2 shadow-5 tc w5' id={id}>
+        // <div classNameNameName='post dib br3 pa3 ma2 grow bw2 shadow-5 tc w5' id={id}>
         //     <h2>{title}</h2>
         //     <p>{body}</p>
         // </div>
+
+      //   <article classNameName="bb b--black-10 dib br3 pa3 ma2 grow bw2 shadow-1" id={id} onClick={onPostClick}>
+      //   <a classNameName="db pv4 ph3 ph0-l no-underline black dim" href="#0">
+      //     <div classNameName="flex flex-column flex-row-ns">
+      //       <div classNameName="pr3-ns mb4 mb0-ns w-100 w-40-ns">
+      //         <img src={img} classNameName="db" alt="Photo of a whale's tale coming crashing out of the water." />
+      //       </div>
+      //       <div classNameName="w-100 w-60-ns pl3-ns" id={id} >
+      //         <h1 classNameName="f3 fw1 baskerville mt0 lh-title">{title}</h1>
+      //         <p classNameName="f6 f5-l lh-copy">
+      //           {summary}
+      //         </p>
+      //         <p classNameName="f6 lh-copy mv0">By {author}</p>
+      //       </div>
+      //     </div>
+      //   </a>
+      // </article>
