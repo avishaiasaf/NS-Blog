@@ -5,7 +5,7 @@ import './PostCard.css';
 
 const PostCard = ({ title, summary, body, author, id, onPostClick, img, date })=>{
     return (
-      <article className="ma3 dit-l br1 grow shadow-1" style={{width:'320px'}} id={id} onClick={onPostClick}>
+      <article className="ma3 dit-l br1 grow shadow-1 tc pointer" style={{width:'17rem'}} id={id} onClick={onPostClick}>
       <img src={img} className="db w-100 br2 br--top" alt=""  />
       <div className="pa2 ph3-ns pb3-ns">
         <div className="dt w-100 mt1">

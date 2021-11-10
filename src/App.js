@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   onInputChange = (event)=>{
-    console.log(event.target.value);
+    //console.log(event.target.value);
     this.setState({input: event.target.value});
   }
 
@@ -66,9 +66,13 @@ class App extends Component {
     this.setState({route: 'home', isSignedIn: true});
   }
 
+  onHomeClick = ()=>{
+    this.setState({route: 'home'});
+  }
+
   setUser = (user)=>{
     this.setState({user: user});
-    console.log(this.state.user);
+    //console.log(this.state.user);
   }
 
   onLogout = ()=>{
@@ -76,7 +80,7 @@ class App extends Component {
   }
 
   onPostClick = (event)=>{
-    console.log(event.currentTarget.id);
+    //console.log('post id: ', event.currentTarget.id);
     this.setState({route: 'post', post: posts[event.currentTarget.id-1]});
     window.scrollTo(0, 0);
   }
@@ -120,7 +124,7 @@ class App extends Component {
           onLogin={this.onLogin} 
           onLogout={this.onLogout}
           onBlog={this.onPostReturn}
-          onHome={this.onLoginClick}
+          onHome={this.onHomeClick}
           user={this.state.user}
         />
         <Feed />

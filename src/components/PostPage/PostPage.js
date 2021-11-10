@@ -4,15 +4,16 @@ import PostImageElement from '../PostImageElement/PostImageElement';
 import './PostPage.css';
 
 const PostPage = ({ post, onPostReturn })=>{
+    console.log(post);
     return (
         <div className='center w-60'>
-            <a href="#" class="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right" onClick={onPostReturn}>Return</a>
+            <span class="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={onPostReturn}>Return</span>
             <h1>{post.title}</h1>
             <br />
             <h3>By {post.author} - {post.date}</h3>
             <br />
-            {/* <p>{post.summary}</p> */}
             {
+                // eslint-disable-next-line
                 post.body.map((element, i)=>{
                     if(post.body[i].type==='text') {
                         return(
@@ -22,13 +23,11 @@ const PostPage = ({ post, onPostReturn })=>{
                         return (
                             <PostImageElement imgSrc={post.body[i].content} />
                         );
-                    }else{
-                        return
                     }
                 })
             }
             
-            <a href="#" class="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2" onClick={onPostReturn}>Return</a>
+            <span class="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={onPostReturn}>Return</span>
             <br />
         </div>
     )

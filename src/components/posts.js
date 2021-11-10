@@ -42,6 +42,7 @@ export const posts = [
                  Molestias aut, repellat ipsum facere voluptate dicta 
                  obcaecati deserunt nobis suscipit eaque?`,
         author: 'Avishai Asaf',
+        date: '01/01/2021',
         img: logoSdf,
         body: [
             {
@@ -73,6 +74,7 @@ export const posts = [
                  Molestias aut, repellat ipsum facere voluptate dicta 
                  obcaecati deserunt nobis suscipit eaque?`,
         author: 'Avishai Asaf',
+        date: '01/01/2021',
         img: encapList,
         body: []
     },
@@ -93,6 +95,7 @@ export const posts = [
                  Molestias aut, repellat ipsum facere voluptate dicta 
                  obcaecati deserunt nobis suscipit eaque?`,
         author: 'Avishai Asaf',
+        date: '01/01/2021',
         img: encapList,
         body: []
     },
