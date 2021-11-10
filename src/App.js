@@ -91,8 +91,14 @@ class App extends Component {
 
   render(){
     const filteredPosts = posts.filter((post)=>{
-      return post.summary.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase()) || post.title.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase());
+      return  post.summary.toLowerCase().includes(this.state.input.toLowerCase()) || 
+              post.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
+              post.body.some(el=>el.content.toLowerCase().includes(this.state.input.toLowerCase()));
     });
+
+    const feed = ()=>{
+      if(!this.state.user.email) return <Feed registerClick={this.registerClick} />
+    }
 
     const router = ()=>{
       switch(this.state.route){
@@ -114,7 +120,11 @@ class App extends Component {
         case 'register':
           return <Register onLoginClick={this.onLoginClick} />
         default:
-          return <PostPage post={this.state.post} onPostReturn={this.onPostReturn} />
+          return (
+            <div>
+              <PostPage post={this.state.post} onPostReturn={this.onPostReturn} />
+            </div> 
+          );
       }
     }
     return (
@@ -127,7 +137,7 @@ class App extends Component {
           onHome={this.onHomeClick}
           user={this.state.user}
         />
-        <Feed />
+        {feed()}
         {
           router()
         }
@@ -139,13 +149,3 @@ class App extends Component {
 }
 
 export default App;
-
-          // this.state.route == 'home' ?
-          // <div>
-          // <SearchField onInputChange={this.onInputChange} searchTitle={'Look for content: '}/>
-          // <PostList posts={filteredPosts} onPostClick={this.onPostClick} /> 
-          // </div> : (
-          //   this.state.route == 'login' ?
-          //   <Login onLoginClick={this.onLoginClick} /> :
-          //   <PostPage post={this.state.post} />
-          // )

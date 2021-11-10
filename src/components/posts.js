@@ -2,6 +2,12 @@ import encapList from '../images/encapsulateList.png';
 import emTemp from '../images/emailTemplate.png';
 import logoEmail from '../images/email_pic.jpeg';
 import logoSdf from '../images/sdf_pic.jpeg';
+import email_1 from '../images/SB_email.png';
+import email_2 from '../images/SB_email_2.png';
+import email_title from '../images/SB_email_title.jpeg';
+import app_rec_1 from '../images/app_rec_1.png';
+import app_rec_2 from '../images/app_rec_2.png';
+import app_rec_title from '../images/app_rec_title.jpeg'
 
 export const posts = [
     {
@@ -38,9 +44,8 @@ export const posts = [
     {
         id: 2,
         title: 'Deploying via SDF',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
+        summary: `Start using the SuiteCloud Development Framework can be challenging, 
+        so this article gives the configuration process in a nutshell`,
         author: 'Avishai Asaf',
         date: '01/01/2021',
         img: logoSdf,
@@ -69,24 +74,82 @@ export const posts = [
     },
     {
         id: 3,
-        title: 'Email Approvals',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
+        title: 'Sandbox Email Context',
+        summary: `Testing email dependent solutions in SB
+        NetSuite Sandbox offers a safe way to keep you from sending unwanted emails to your relationships.`,
         author: 'Avishai Asaf',
         date: '01/01/2021',
-        img: encapList,
-        body: []
+        img: email_title,
+        body: [
+            {
+                type: 'text',
+                content: `Testing email dependent solutions in SB
+                NetSuite Sandbox offers a safe way to keep you from sending unwanted emails to your relationships. 
+                And so, you can define the recipient of the Sandbox email under Setup>Company>Email Preferences:
+                `
+            },
+            {
+                type: 'image',
+                content: email_1
+            },
+            {
+                type: 'text',
+                content: `*By three options:*
+                1.	A constant email address (or multiple addresses)
+                2.	Sending the emails to the logged in user (System default)
+                3.	Do not send emails.
+                In this article I will explain why the default option is not sufficient for your sandbox testing and how you can improve it. 
+                While I was testing an Email Plug-in as a part of an Approval Process, I wanted to make sure that in a case of an exception, the Email Approver will receive an email notifying the exception that has just occurred. Well, the emails kept waiting in the Sent Email List yet were not sent to my email address. This is because of the second option (Logged in user) is depending on the execution context of the email sending, and thus, while sending the emails from a Plug-in while I’m not actually logged in, the context had no user, and the emails were not sent. 
+                In order to resolve this, I’m using the constant email recipient approach, and while testing a solution that has another recipient in it forwarding the emails to them by the gmail filter.
+                `
+            },
+            {
+                type: 'image',
+                content: email_2
+            },
+            {
+                type: 'text',
+                content: `Just type the name of the email original recipient in “Has the words” field and forward the mail to that recipient, 
+                enabling him to test functionalities in the Sandbox.`
+            }
+        ]
     },
     {
         id: 4,
-        title: 'Saved Searches',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
+        title: 'Creating Record Approval Audit',
+        summary: `Using an approval process for transactions is a very common procedure. Having said that, 
+        there is a great importance of keeping the logs of the approval details, like the approver, exact time, context etc. 
+        You can achieve all these by using a custom record for the approval audit.
+        The custom record should look something like that:
+        `,
         author: 'Avishai Asaf',
-        img: encapList,
-        body: []
+        img: app_rec_title,
+        body: [
+            {
+                type: 'text',
+                content: `Using an approval process for transactions is a very common procedure. 
+                Having said that, there is a great importance of keeping the logs of the approval details, like the approver, 
+                exact time, context etc. You can achieve all these by using a custom record for the approval audit.
+                The custom record should look something like that:
+                `
+            },
+            {
+                type: 'image',
+                content: app_rec_1
+            },
+            {
+                type: 'text',
+                content: `Once this record is created you can use it inside the approval workflow by activating the create record action. 
+                Just make sure you populate the Document Number field with the workflow current record value. 
+                Form here you can create a saved search with a “Document Number” available filter and attach it to a custom list under a custom tab on the required transaction.
+                It should look like this:
+                `
+            },
+            {
+                type: 'image',
+                content: app_rec_2
+            }
+        ]
     },
     {
         id: 5,

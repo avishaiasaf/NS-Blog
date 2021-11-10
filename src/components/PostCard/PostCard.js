@@ -3,6 +3,11 @@ import './PostCard.css';
 
 //br1 dib grow shadow-1 ma2 center
 
+const summaryShape = (summary)=>{
+  const len = 150;
+  return summary.length > len ? summary.substr(0, len) + '...' : summary;
+}
+
 const PostCard = ({ title, summary, body, author, id, onPostClick, img, date })=>{
     return (
       <article className="ma3 dit-l br1 grow shadow-1 tc pointer" style={{width:'17rem'}} id={id} onClick={onPostClick}>
@@ -17,7 +22,7 @@ const PostCard = ({ title, summary, body, author, id, onPostClick, img, date })=
           </div>
         </div>
         <p className="f6 lh-copy measure mt2 mid-gray">
-          {summary}
+          {summaryShape(summary)}
         </p>
         <h5 className=" mv0">{author} - {date}</h5>
       </div>
