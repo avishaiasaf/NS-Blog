@@ -59,13 +59,13 @@ class App extends Component {
       posts: [],
       post: '',
       solution: '',
-      isSignedIn: true,
+      isSignedIn: false,
       route: 'home',
       component: '',
       user: {
-        id: '1',
-        name: 'Avishai',
-        email: 'avish.asaf@gmail.com',
+        id: '',
+        name: '',
+        email: '',
         entries: ''
       }
     }
