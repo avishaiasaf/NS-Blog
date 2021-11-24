@@ -1,8 +1,13 @@
 import React from 'react';
 import './Navbar.css'
 
-const Navbar = ({ isSignedIn, onLogin, onLogout, onBlog, onHome, user })=>{
+const Navbar = ({ isSignedIn, onLogin, onLogout, onBlog, onHome, user, onCatalogClick })=>{
     const greeting = user.email ? 'Hello ' + user.email : '';
+    // const solutionCatalog = ()=>{
+    //     if(isSignedIn){
+    //         return <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onCatalogClick}>Solution Catalog</span>;
+    //     }
+    // }  
     return (
         <nav className="dt w-100 border-box pa3 ph5-ns b--light-blue br2 ba">
             <span className="dtc v-mid mid-gray link dim w-25">
@@ -11,6 +16,7 @@ const Navbar = ({ isSignedIn, onLogin, onLogout, onBlog, onHome, user })=>{
             
             <div className="dtc v-mid w-75 tr">
                 <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onHome}>Home</span>
+                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onCatalogClick}>Solution Center</span>
                 <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onBlog}>Blog</span>
                 {
                     isSignedIn ? 

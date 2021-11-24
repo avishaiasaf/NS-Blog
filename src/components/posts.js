@@ -8,6 +8,8 @@ import email_title from '../images/SB_email_title.jpeg';
 import app_rec_1 from '../images/app_rec_1.png';
 import app_rec_2 from '../images/app_rec_2.png';
 import app_rec_title from '../images/app_rec_title.jpeg'
+import sdf_intro from '../images/sdf_intro.gif'
+import sdf_deploy from '../images/sdf_deploy.gif'
 
 export const posts = [
     {
@@ -43,7 +45,7 @@ export const posts = [
     },
     {
         id: 2,
-        title: 'Deploying via SDF',
+        title: 'Getting Started with SDF',
         summary: `Start using the SuiteCloud Development Framework can be challenging, 
         so this article gives the configuration process in a nutshell`,
         author: 'Avishai Asaf',
@@ -153,24 +155,64 @@ export const posts = [
     },
     {
         id: 5,
-        title: 'Saved Searches',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
+        title: 'Deploying via SDF',
+        summary: `Once you have SDF configured locally you can easily deploy your projects.
+        To maintain a successful deployment, here is my checklist:
+        `,
         author: 'Avishai Asaf',
         date: '01/01/2021',
-        img: encapList,
-        body: []
+        img: sdf_deploy,
+        body: [
+            {
+                type: 'text',
+                content: `*Once you have SDF configured locally you can easily deploy your projects.*
+                To maintain a successful deployment, here is my checklist:
+                1.	Pre: consider deploying your WF/Script as not initiating/deployed to have another validation step before affecting the PROD environment.
+                2.	Validate that all the project dependencies exist locally, import missing to the project if there are any.
+                3.	Find the Account-Specific-Values in the project and replace those with their equivalent values from the target account (you can find the occurrences by the project validation command).
+                4.	(Only if you have a WF with Send Email action) delete the email template id from the action xml and change the email template option to false. This action is not yet supported by SDF, and you’ll have to fix this manually after the deployment.
+                5.	Add the dependencies to the manifest and validate again, if there are no errors you are good to go.
+                6.	Select the account and deploy, this should be pretty fast.
+                `
+            },
+            {
+                type: 'image',
+                content: sdf_deploy
+            }
+        ]
     },
     {
         id: 6,
-        title: 'Saved Searches',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
+        title: 'SDF Intro',
+        summary: `How do you implement your customizations to a new environment?
+        Using the SuiteCloud Development Framework (SDF) enables you to generate a quick and easy push to the requested environment. `,
         author: 'Avishai Asaf',
-        img: encapList,
-        body: []
+        img: sdf_intro,
+        body: [
+            {
+                type: 'text',
+                content: `*How do you implement your customizations to a new environment?*
+                Using the SuiteCloud Development Framework (SDF) enables you to generate a quick and easy push to the requested environment. Using SDF allows you to work with all kinds of NetSuite records while offering a usable benefit for developers, the ability to create the Script and Script Deployment records locally and then to push a whole working script to the environment.
+                For those who have worked with the SuiteBundles I see several differences between the two:
+                
+                *Pros*
+                •	Ability to collect customizations from many environments into one project.
+                •	Keep a backup of the project you’ve pushed.
+                •	There are several records that are not supported using SuiteBundles (ex. Email Templates) and supported by the SDF.
+                •	Fast implementation you don’t have to wait for installation.
+                •	Managing Account Specific Values.
+                *Cons*
+                •	Unable to import locked records, unlike the SuiteBundles on SDF a project cannot depend on locked records.
+                •	Manually import all dependencies, unlike the SuiteBundles here you’ll have to actively import all your dependencies, though the SDF will alert which dependencies are missed.
+                
+                And here it is in a glance:
+                `
+            },
+            {
+                type: 'image',
+                content: sdf_intro
+            }
+        ]
     },
     {
         id: 7,
