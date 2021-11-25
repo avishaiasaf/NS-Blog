@@ -9,7 +9,7 @@ const SolutionPage = ({ solution, onSolutionReturn, onFileClick }) =>{
 
     return (
         <div className='center w-60'>
-            <span className="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={onSolutionReturn}>Return</span>
+            <span className="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={()=>{onSolutionReturn('catalog')}}>Return</span>
             <h1>{solution.title}</h1>
             <p>{solution.body}</p>
             {
@@ -30,7 +30,7 @@ const SolutionPage = ({ solution, onSolutionReturn, onFileClick }) =>{
             <br />
             <h3>By {solution.author} - {solution.date}</h3>
             <br />
-            <span className="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={onSolutionReturn}>Return</span>
+            <span className="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={()=>{onSolutionReturn('catalog')}}>Return</span>
             <br />
         </div>
     )

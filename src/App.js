@@ -31,26 +31,6 @@ const initialState = {
       }
 }
 
-// const initialState = {
-//   input: '',
-//       posts: [],
-//       post: '',
-//       soltion: '',
-//       isSignedIn: !LOGGED ? false : true,
-//       route: 'home',
-//       user: !LOGGED ? {
-//         id: '',
-//         name: '',
-//         email: '',
-//         entries: ''
-//       } : {
-//         id: '1',
-//         name: 'Avishai',
-//         email: 'avish.asaf@gmail.com',
-//         entries: '1'
-//       }
-// }
-
 class App extends Component {
   constructor(){
     super();
@@ -59,13 +39,13 @@ class App extends Component {
       posts: [],
       post: '',
       solution: '',
-      isSignedIn: false,
+      isSignedIn: true,
       route: 'home',
       component: '',
       user: {
         id: '',
         name: '',
-        email: '',
+        email: 'avish.asaf@gmail.com',
         entries: ''
       }
     }
@@ -75,28 +55,27 @@ class App extends Component {
     window.scrollTo(0, 0);
   }
 
+  //State changing methods
+
   resetInput = ()=>{
     this.setState({input: ''});
   }
 
   onInputChange = (event)=>{
-    //console.log(event.target.value);
     this.setState({input: event.target.value});
   }
 
   RouteChange = (route)=>{
     console.log(route);
-    this.setState({route: route});
+    this.setState({route: route, input: ''});
   }
 
   onLoginClick = (event)=>{
-    //console.log(event.target);
     this.setState({route: 'home', isSignedIn: true});
   }
 
   setUser = (user)=>{
     this.setState({user: user});
-    //console.log(this.state.user);
   }
 
   onLogout = ()=>{
@@ -104,13 +83,11 @@ class App extends Component {
   }
 
   onPostClick = (event)=>{
-    //console.log('post id: ', event.currentTarget.id);
     this.setState({route: 'post', post: posts[event.currentTarget.id-1]});
     window.scrollTo(0, 0);
   }
 
   onSolutionClick = (event)=>{
-    // console.log('solution id: ', event.currentTarget.id);
     this.setState({route: 'solution', solution: solutions[event.currentTarget.id-1]});
     window.scrollTo(0, 0);
   }
@@ -131,97 +108,109 @@ class App extends Component {
       return  solution.title.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase()) || 
               solution.summary.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase()) ||
               solution.body.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase())
-    })
+    });
 
-    // const feed = ()=>{
-    //   if(!this.state.user.email) return <Feed isSignedIn={this.state.isSignedIn} registerClick={this.registerClick} />
-    // }
+    const homeRoute = () =>{
+      return (
+        <div>
+          <Home />
+        </div>
+      );
+    }
 
-    const router = ()=>{
+    const blogRoute = () =>{
+      return (
+        <div>
+          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostListLazy posts={filteredPosts} onPostClick={this.onPostClick} />
+          </Suspense>
+        </div>
+      );
+    }
+
+    const loginRoute = () =>{
+      return (
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginLazy onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.RouteChange} />
+        </Suspense>
+      );
+    }
+
+    const registerRoute = () =>{
+      return (
+        <Suspense fallback={<div>Loading...</div>}>
+          <RegisterLazy onLoginClick={this.onLoginClick} />
+        </Suspense>
+      );
+    }
+
+    const postRoute = () =>{
+      return (
+        <div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostPageLazy post={this.state.post} onPostReturn={this.RouteChange} onInputChange={this.onInputChange} resetInput={this.resetInput} />
+          </Suspense>
+        </div> 
+      );
+    }
+
+    const catalogRoute = () =>{
+      return (
+        <div>
+          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <SolutionCatalogLazy
+              isSignedIn={this.state.isSignedIn} 
+              onSolutionClick={this.onSolutionClick}
+              solutions={filteredSolutions}
+            />
+          </Suspense>
+        </div>
+      );
+    }
+
+    const solutionRoute = () =>{
+      return (
+        <Suspense fallback={<div>Loading...</div>}>
+          <SolutionPageLazy
+            solution={this.state.solution}
+            onSolutionReturn={this.RouteChange}
+            onFileClick={this.onFileClick}
+          />
+        </Suspense>
+      );
+    }
+
+    const notFountRoute = () =>{
+      return (
+        <div>
+          Page Not Found
+        </div>
+      );
+    }
+
+    const renderPage = () =>{
       switch(this.state.route){
         case 'home':
-              return (
-                
-                <div>
-                  <Home />
-                </div>
-              );
+          return homeRoute();
         case 'blog':
-          return (
-            // <this.state.component />
-                <div>
-                  <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
-                   {/* <PostList posts={filteredPosts} onPostClick={this.onPostClick} />  */}
-                <Suspense fallback={<div>Loading...</div>}>
-                  <PostListLazy posts={filteredPosts} onPostClick={this.onPostClick} />
-                </Suspense>
-                </div>
-              
-          );
+          return blogRoute();
         case 'login':
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <LoginLazy onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.RouteChange} />
-            </Suspense>
-          // <Login onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.registerClick} />
-          );
+          return loginRoute();
         case 'register':
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <RegisterLazy onLoginClick={this.onLoginClick} />
-            </Suspense>
-          );
-          // <Register onLoginClick={this.onLoginClick} />
+          return registerRoute();
         case 'post':
-          return (
-            <div>
-              {/* <PostPage post={this.state.post} onPostReturn={this.onPostReturn} /> */}
-              <Suspense fallback={<div>Loading...</div>}>
-                <PostPageLazy post={this.state.post} onPostReturn={this.RouteChange} onInputChange={this.onInputChange} resetInput={this.resetInput} />
-              </Suspense>
-            </div> 
-          );
+          return postRoute();
         case 'catalog':
-          return (
-            <div>
-              <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
-              <Suspense fallback={<div>Loading...</div>}>
-                <SolutionCatalogLazy
-                  isSignedIn={this.state.isSignedIn} 
-                  onSolutionClick={this.onSolutionClick}
-                  solutions={filteredSolutions}
-                />
-              </Suspense>
-              {/* <SolutionCatalog 
-                isSignedIn={this.state.isSignedIn} 
-                onSolutionClick={this.onSolutionClick}
-                solutions={filteredSolutions}
-              /> */}
-            </div>
-          )
+          return catalogRoute();
         case 'solution':
-          return (
-            <Suspense fallback={<div>Loading...</div>}>
-              <SolutionPageLazy
-                solution={this.state.solution}
-                onSolutionReturn={this.onSolutionReturn}
-                onFileClick={this.onFileClick}
-              />
-            </Suspense>
-            // <SolutionPage
-            //   solution={this.state.solution}
-            //   onSolutionReturn={this.onSolutionReturn}
-            //   onFileClick={this.onFileClick}
-            // />
-          )
+          return solutionRoute();
         default:
-          return (
-            <div>
-              Page Not Found
-            </div>
-          );
+          return notFountRoute();
       }
     }
+
     return (
       <div className='tc'>
         <Navbar 
@@ -233,14 +222,14 @@ class App extends Component {
           user={this.state.user}
           //onCatalogClick={this.onCatalogClick}
         />
-        
-        {/* {feed()} */}
         <Feed 
           isSignedIn={this.state.isSignedIn} 
           registerClick={this.registerClick} 
           onSolutionClick={this.onCatalogClick}
         />
-        {router()}
+        {
+          renderPage()
+        }
         <Footer />
       </div>
     );

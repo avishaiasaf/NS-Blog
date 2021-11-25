@@ -2,7 +2,7 @@ import React from 'react';
 // import './Navbar.css'
 
 const Navbar = ({ isSignedIn, onButtonClick, onLogout, user })=>{
-    const greeting = user.email ? 'Hello ' + user.email : '';
+    const greeting = user.email ? 'Hello ' + user.email.substr(0, user.email.indexOf('@')) : '';
     // const solutionCatalog = ()=>{
     //     if(isSignedIn){
     //         return <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onCatalogClick}>Solution Catalog</span>;

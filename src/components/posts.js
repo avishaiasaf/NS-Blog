@@ -213,25 +213,5 @@ export const posts = [
                 content: sdf_intro
             }
         ]
-    },
-    {
-        id: 7,
-        title: 'Saved Searches',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
-        author: 'Avishai Asaf',
-        img: encapList,
-        body: []
-    },
-    {
-        id: 8,
-        title: 'Saved Searches',
-        summary: `lLorem, ipsum dolor sit amet consectetur adipisicing elit.
-                 Molestias aut, repellat ipsum facere voluptate dicta 
-                 obcaecati deserunt nobis suscipit eaque?`,
-        author: 'Avishai Asaf',
-        img: encapList,
-        body: []
     }
 ]
