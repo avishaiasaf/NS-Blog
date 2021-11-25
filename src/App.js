@@ -1,20 +1,20 @@
-
 import './App.css';
-import PostList from './components/PostList/PostList';
 import Navbar from './components/Navbar/Navbar';
-//import Scroll from './components/Scroll/Scroll';
 import Feed from './components/Feed/Feed';
 import SearchField from './components/SearchField/SearchField';
-import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
-import PostPage from './components/PostPage/PostPage';
-import Register from './components/Register/Register';
 import Home from './components/Home/Home';
-import SolutionCatalog from './components/SolutionCatalog/SolutionCatalog';
-import { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { solutions } from './components/solutions.js';
 import { posts } from './components/posts.js';
-import SolutionPage from './components/SolutionPage/SolutionPage';
+
+//Lazy load Components
+const PostListLazy = React.lazy(()=>import('./components/PostList/PostList'));
+const SolutionCatalogLazy = React.lazy(()=> import('./components/SolutionCatalog/SolutionCatalog'));
+const SolutionPageLazy = React.lazy(()=>import('./components/SolutionPage/SolutionPage'));
+const PostPageLazy = React.lazy(()=>import('./components/PostPage/PostPage'));
+const LoginLazy = React.lazy(()=>import('./components/Login/Login'));
+const RegisterLazy = React.lazy(()=>import('./components/Register/Register'));
 
 const initialState = {
   input: '',
@@ -69,17 +69,14 @@ class App extends Component {
         entries: ''
       }
     }
-
-    // if(this.state.route === 'blog'){
-    //   import('./components/PostList/PostList').then((Blog)=>{
-    //     console.log(Blog);
-    //     this.setState({route: route, component: Blog.default});
-    //   });
-    // }
   }
 
   componentDidMount(){
     window.scrollTo(0, 0);
+  }
+
+  resetInput = ()=>{
+    this.setState({input: ''});
   }
 
   onInputChange = (event)=>{
@@ -87,25 +84,14 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
-  onLogin = ()=>{
-    this.setState({route: 'login'});
-  }
-
-  registerClick = ()=>{
-    this.setState({route: 'register'})
+  RouteChange = (route)=>{
+    console.log(route);
+    this.setState({route: route});
   }
 
   onLoginClick = (event)=>{
     //console.log(event.target);
     this.setState({route: 'home', isSignedIn: true});
-  }
-
-  onHomeClick = ()=>{
-    this.setState({route: 'home'});
-  }
-
-  onCatalogClick = ()=>{
-    this.setState({route: 'catalog'});
   }
 
   setUser = (user)=>{
@@ -129,17 +115,8 @@ class App extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPostReturn = ()=>{
-    this.setState({route: 'blog', input: ''});
-  }
-
-  onSolutionReturn = () =>{
-    this.setState({route: 'catalog'});
-  }
-
   onFileClick = (ref) =>{
     console.log('Download file ', ref, this.state.user);
-    
   }
 
   render(){
@@ -174,37 +151,68 @@ class App extends Component {
             // <this.state.component />
                 <div>
                   <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
-                  <PostList posts={filteredPosts} onPostClick={this.onPostClick} /> 
+                   {/* <PostList posts={filteredPosts} onPostClick={this.onPostClick} />  */}
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PostListLazy posts={filteredPosts} onPostClick={this.onPostClick} />
+                </Suspense>
                 </div>
+              
           );
         case 'login':
-          return <Login onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.registerClick} />
+          return (
+            <Suspense fallback={<div>Loading...</div>}>
+              <LoginLazy onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.RouteChange} />
+            </Suspense>
+          // <Login onLoginClick={this.onLoginClick} setUser={this.setUser} registerClick={this.registerClick} />
+          );
         case 'register':
-          return <Register onLoginClick={this.onLoginClick} />
+          return (
+            <Suspense fallback={<div>Loading...</div>}>
+              <RegisterLazy onLoginClick={this.onLoginClick} />
+            </Suspense>
+          );
+          // <Register onLoginClick={this.onLoginClick} />
         case 'post':
           return (
             <div>
-              <PostPage post={this.state.post} onPostReturn={this.onPostReturn} />
+              {/* <PostPage post={this.state.post} onPostReturn={this.onPostReturn} /> */}
+              <Suspense fallback={<div>Loading...</div>}>
+                <PostPageLazy post={this.state.post} onPostReturn={this.RouteChange} onInputChange={this.onInputChange} resetInput={this.resetInput} />
+              </Suspense>
             </div> 
           );
         case 'catalog':
           return (
             <div>
               <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
-              <SolutionCatalog 
+              <Suspense fallback={<div>Loading...</div>}>
+                <SolutionCatalogLazy
+                  isSignedIn={this.state.isSignedIn} 
+                  onSolutionClick={this.onSolutionClick}
+                  solutions={filteredSolutions}
+                />
+              </Suspense>
+              {/* <SolutionCatalog 
                 isSignedIn={this.state.isSignedIn} 
                 onSolutionClick={this.onSolutionClick}
                 solutions={filteredSolutions}
-              />
+              /> */}
             </div>
           )
         case 'solution':
           return (
-            <SolutionPage
-              solution={this.state.solution}
-              onSolutionReturn={this.onSolutionReturn}
-              onFileClick={this.onFileClick}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SolutionPageLazy
+                solution={this.state.solution}
+                onSolutionReturn={this.onSolutionReturn}
+                onFileClick={this.onFileClick}
+              />
+            </Suspense>
+            // <SolutionPage
+            //   solution={this.state.solution}
+            //   onSolutionReturn={this.onSolutionReturn}
+            //   onFileClick={this.onFileClick}
+            // />
           )
         default:
           return (
@@ -218,12 +226,12 @@ class App extends Component {
       <div className='tc'>
         <Navbar 
           isSignedIn={this.state.isSignedIn} 
-          onLogin={this.onLogin} 
+          onButtonClick={this.RouteChange} 
           onLogout={this.onLogout}
-          onBlog={this.onPostReturn}
-          onHome={this.onHomeClick}
+          //onBlog={this.onPostReturn}
+          //onHome={this.onHomeClick}
           user={this.state.user}
-          onCatalogClick={this.onCatalogClick}
+          //onCatalogClick={this.onCatalogClick}
         />
         
         {/* {feed()} */}

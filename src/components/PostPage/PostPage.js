@@ -3,11 +3,11 @@ import PostTextElement from '../PostTextElement/PostTextElement';
 import PostImageElement from '../PostImageElement/PostImageElement';
 import './PostPage.css';
 
-const PostPage = ({ post, onPostReturn })=>{
+const PostPage = ({ post, onPostReturn, resetInput})=>{
     console.log(post);
     return (
         <div className='center w-60'>
-            <span className="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={onPostReturn}>Return</span>
+            <span className="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={()=>{onPostReturn('blog'); resetInput()}}>Return</span>
             <h1>{post.title}</h1>
             <br />
             <h3>By {post.author} - {post.date}</h3>
@@ -27,7 +27,7 @@ const PostPage = ({ post, onPostReturn })=>{
                 })
             }
             
-            <span className="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={onPostReturn}>Return</span>
+            <span className="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={()=>{onPostReturn('blog'); resetInput()}}>Return</span>
             <br />
         </div>
     )

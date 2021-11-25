@@ -5,13 +5,13 @@ function NewlineText(props) {
     return text.split('\n').map(str => {
         if(str.match(/\*([^*]*)\*/)){
             console.log('match');
-            return <p className='f3 lh-copy w-100 tl'><strong>{str.replace(/\*/g,'')}</strong></p>
+            return <p className='f5 lh-copy w-100 tl'><strong>{str.replace(/\*/g,'')}</strong></p>
         }
         //  else if(str.match(/_(.+)_/)){
         //     return <p className='f3 lh-copy w-100 tl light-gray'>{str.replace(/_/g,'')}</p>
         // }
         else{
-            return <p className='f3 lh-copy w-100 tl'>{str}</p>
+            return <p className='f5 lh-copy w-100 tl'>{str}</p>
         }
     });
   }

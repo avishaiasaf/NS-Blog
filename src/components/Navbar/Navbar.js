@@ -1,7 +1,7 @@
 import React from 'react';
-import './Navbar.css'
+// import './Navbar.css'
 
-const Navbar = ({ isSignedIn, onLogin, onLogout, onBlog, onHome, user, onCatalogClick })=>{
+const Navbar = ({ isSignedIn, onButtonClick, onLogout, user })=>{
     const greeting = user.email ? 'Hello ' + user.email : '';
     // const solutionCatalog = ()=>{
     //     if(isSignedIn){
@@ -15,13 +15,13 @@ const Navbar = ({ isSignedIn, onLogin, onLogout, onBlog, onHome, user, onCatalog
             </span>
             
             <div className="dtc v-mid w-75 tr">
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onHome}>Home</span>
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onCatalogClick}>Solution Center</span>
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={onBlog}>Blog</span>
+                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('home')}}>Home</span>
+                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('catalog')}}>Solution Center</span>
+                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('blog')}}>Blog</span>
                 {
                     isSignedIn ? 
                     <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={onLogout} >Log out</span> :
-                    <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={onLogin} >Log in</span>
+                    <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={()=>{onButtonClick('login')}} >Log in</span>
                 }
             </div>
         </nav>
