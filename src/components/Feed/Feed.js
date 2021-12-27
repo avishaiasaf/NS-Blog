@@ -17,7 +17,7 @@ const Feed = ({ isSignedIn, registerClick, onSolutionClick })=>{
                     </div>
                 </div>
                 <div className="pa3 pa4-ns dtc-ns v-mid">
-                    <span className="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={registerClick}>Sign up here</span>
+                    <span className="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={registerClick}>Sign up here (Currently Unavailable)</span>
                 </div>
                 </div> :
                 <div className="dt-ns dt--fixed-ns w-100">

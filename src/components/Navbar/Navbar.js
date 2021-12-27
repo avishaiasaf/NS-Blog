@@ -16,12 +16,16 @@ const Navbar = ({ isSignedIn, onButtonClick, onLogout, user })=>{
             
             <div className="dtc v-mid w-75 tr">
                 <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('home')}}>Home</span>
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('catalog')}}>Solution Center</span>
+                {
+                    // Inactivating as part of Go Live overcomplexity
+                    /*<span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('catalog')}}>Solution Center</span>*/
+                }
                 <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('blog')}}>Blog</span>
                 {
-                    isSignedIn ? 
-                    <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={onLogout} >Log out</span> :
-                    <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={()=>{onButtonClick('login')}} >Log in</span>
+                    // Inactivating as part of Go Live overcomplexity
+                    // isSignedIn ?
+                    // <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={onLogout} >Log out</span> :
+                    // <span className="link dim dark-gray f6 f5-ns dib pointer grow" onClick={()=>{onButtonClick('login')}} >Log in</span>
                 }
             </div>
         </nav>
