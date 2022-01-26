@@ -4,6 +4,7 @@ import Feed from './components/Feed/Feed';
 import SearchField from './components/SearchField/SearchField';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
+import About from './components/About/About';
 import React, { Component, Suspense } from 'react';
 import { solutions } from './components/solutions.js';
 import { posts } from './components/posts.js';
@@ -113,8 +114,16 @@ class App extends Component {
     const homeRoute = () =>{
       return (
         <div>
-          <Home />
+          <Home blogName={'NetSuite Pro'} />
         </div>
+      );
+    }
+
+    const aboutRoute = () =>{
+      return (
+          <div>
+            <About />
+          </div>
       );
     }
 
@@ -194,6 +203,8 @@ class App extends Component {
       switch(this.state.route){
         case 'home':
           return homeRoute();
+        case 'about':
+          return aboutRoute();
         case 'blog':
           return blogRoute();
         case 'login':

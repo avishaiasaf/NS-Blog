@@ -5,7 +5,7 @@ const PostList = ({posts, onPostClick})=>{
     return (
         <div className='w-80 center'>
             <section className="mw8 w-80 center">
-            <h2 className="baskerville fw1 ph3 ph0-l">Recently Posted</h2>
+            <br /><h2 className="black-50   ">Recently Posted</h2><br />
             {
                 posts.map((post, i)=>{
                     return (
