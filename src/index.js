@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 import 'tachyons';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App className='tc' />
+      <BrowserRouter>
+        <App className='tc' />
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
