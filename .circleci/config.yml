@@ -1,4 +1,9 @@
 version: 2.1
+jobs:
+  my-job:
+    executor: my-executor
+    steps:
+      - run: npm start
 orbs:
   hello: circleci/hello-build@0.0.5
 workflows:

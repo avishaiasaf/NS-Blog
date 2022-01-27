@@ -1,5 +1,5 @@
 import React from 'react';
-import about_me from '../../images/about-me.jpg';
+// import about_me from '../../images/about-me.jpg';
 import PostTextElement from '../PostTextElement/PostTextElement';
 
 const About = ()=>{
