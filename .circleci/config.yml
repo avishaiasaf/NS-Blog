@@ -32,8 +32,11 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-  run-npm-command:
+  run-npm-build:
     jobs:
       - node/run:
           npm-run: build
+  run-npm-test:
+    jobs:
+      - node/run:
           npm-run: test
