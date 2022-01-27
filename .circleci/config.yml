@@ -19,7 +19,7 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: npm install
+      - npm-run: start
       - checkout
       - run:
           name: "Say hello"
