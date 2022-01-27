@@ -19,7 +19,6 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: npm install
       - checkout
       - run:
           name: "Say hello"
@@ -32,3 +31,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+  run-npm-command:
+    jobs:
+      - node/run:
+          npm-run: start
