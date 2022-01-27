@@ -18,11 +18,11 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: npm install
-#       - checkout
-#       - run:
-#           name: "Say hello"
-#           command: "echo Hello, World!"
+#       - run: npm install
+      - checkout
+      - run:
+          name: "Say hello"
+          command: "echo Hello, World!"
 
 
 # Invoke jobs via workflows
