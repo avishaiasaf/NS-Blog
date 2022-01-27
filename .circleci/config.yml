@@ -34,4 +34,5 @@ workflows:
   run-npm-command:
     jobs:
       - node/run:
-          npm-run: start
+          npm-run: build
+          npm-run: test
