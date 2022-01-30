@@ -100,9 +100,10 @@ class App extends Component {
   render(){
 
     const filteredPosts = posts.filter((post)=>{
+      console.log(post);
       return  post.summary.toLowerCase().includes(this.state.input.toLowerCase()) || 
               post.title.toLowerCase().includes(this.state.input.toLowerCase()) ||
-              post.body.some(el=>el.content.toLowerCase().includes(this.state.input.toLowerCase()));
+              post.body.some(el=>el.type === 'text' && el.content.toLowerCase().includes(this.state.input.toLowerCase()));
     });
 
     const filteredSolutions = solutions.filter((solution)=>{
@@ -130,7 +131,7 @@ class App extends Component {
     const blogRoute = () =>{
       return (
         <div>
-          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
+          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific keywords?'}/>
           <Suspense fallback={<div>Loading...</div>}>
             <PostListLazy posts={filteredPosts} onPostClick={this.onPostClick} />
           </Suspense>
@@ -167,7 +168,7 @@ class App extends Component {
     const catalogRoute = () =>{
       return (
         <div>
-          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific content?'}/>
+          <SearchField onInputChange={this.onInputChange} searchTitle={'Looking for specific keywords?'}/>
           <Suspense fallback={<div>Loading...</div>}>
             <SolutionCatalogLazy
               isSignedIn={this.state.isSignedIn} 
