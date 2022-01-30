@@ -21,5 +21,5 @@ it("renders with or without a name", () => {
     act(() => {
         render(<About />, container);
     });
-    expect(container.textContent).toBe("About     -       ");
+    expect(container.textContent).toBe("About            ");
 });
