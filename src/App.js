@@ -3,11 +3,10 @@ import Navbar from './components/Navbar/Navbar';
 import Feed from './components/Feed/Feed';
 import SearchField from './components/SearchField/SearchField';
 import Footer from './components/Footer/Footer';
-import Home from './components/Home/Home';
-import About from './components/About/About';
 import React, { Component, Suspense } from 'react';
 import { solutions } from './components/solutions.js';
 import { posts } from './components/posts.js';
+import { Outlet } from "react-router-dom";
 
 //Lazy load Components
 const PostListLazy = React.lazy(()=>import('./components/PostList/PostList'));
@@ -112,22 +111,6 @@ class App extends Component {
               solution.body.toLocaleLowerCase().includes(this.state.input.toLocaleLowerCase())
     });
 
-    const homeRoute = () =>{
-      return (
-        <div>
-          <Home blogName={'NetSuite Pro'} />
-        </div>
-      );
-    }
-
-    const aboutRoute = () =>{
-      return (
-          <div>
-            <About />
-          </div>
-      );
-    }
-
     const blogRoute = () =>{
       return (
         <div>
@@ -192,20 +175,8 @@ class App extends Component {
       );
     }
 
-    const notFountRoute = () =>{
-      return (
-        <div>
-          Page Not Found
-        </div>
-      );
-    }
-
     const renderPage = () =>{
       switch(this.state.route){
-        case 'home':
-          return homeRoute();
-        case 'about':
-          return aboutRoute();
         case 'blog':
           return blogRoute();
         case 'login':
@@ -219,7 +190,7 @@ class App extends Component {
         case 'solution':
           return solutionRoute();
         default:
-          return notFountRoute();
+          return //notFountRoute();
       }
     }
 
@@ -229,16 +200,14 @@ class App extends Component {
           isSignedIn={this.state.isSignedIn} 
           onButtonClick={this.RouteChange} 
           onLogout={this.onLogout}
-          //onBlog={this.onPostReturn}
-          //onHome={this.onHomeClick}
           user={this.state.user}
-          //onCatalogClick={this.onCatalogClick}
         />
         <Feed 
           isSignedIn={this.state.isSignedIn} 
           registerClick={this.registerClick} 
           onSolutionClick={this.onCatalogClick}
         />
+        <Outlet />
         {
           renderPage()
         }

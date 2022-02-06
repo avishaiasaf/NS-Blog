@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 // import './Navbar.css'
 
 const Navbar = ({ isSignedIn, onButtonClick, onLogout, user })=>{
@@ -15,13 +16,15 @@ const Navbar = ({ isSignedIn, onButtonClick, onLogout, user })=>{
             </span>
             
             <div className="dtc v-mid w-75 tr">
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('home')}}>Home</span>
+                {/*<span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('home')}}>Home</span>*/}
+                <Link className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" to="/home" >Home</Link>
                 {
                     // Inactivating as part of Go Live overcomplexity
                     /*<span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('catalog')}}>Solution Center</span>*/
                 }
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('about')}}>About</span>
-                <span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('blog')}}>Blog</span>
+                <Link className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" to="/about">About</Link>
+                <Link className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" to="/blog">Blog</Link>
+                {/*<span className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns pointer grow" onClick={()=>{onButtonClick('blog')}}>Blog</span>*/}
                 {
                     // Inactivating as part of Go Live overcomplexity
                     // isSignedIn ?

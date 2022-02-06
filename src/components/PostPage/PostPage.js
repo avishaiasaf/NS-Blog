@@ -1,13 +1,16 @@
 import React from 'react';
 import PostTextElement from '../PostTextElement/PostTextElement';
 import PostImageElement from '../PostImageElement/PostImageElement';
+import { Link } from "react-router-dom";
 import './PostPage.css';
 
 const PostPage = ({ post, onPostReturn, resetInput})=>{
     console.log(post);
     return (
-        <div className='center w-60'>
-            <span className="no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 right pointer" onClick={()=>{onPostReturn('blog'); resetInput()}}>Return</span>
+        <div className='w8 br2 ba shadow-1 center w-60 b--light-blue pa4'>
+            <div className="tr right">
+                <Link to="/blog" className="link dim dark-gray f6 f5-ns dib pointer grow blue b">Return</Link>
+            </div>
             <h1>{post.title}</h1>
             <br />
             <h3>By {post.author} - {post.date}</h3>
@@ -26,8 +29,9 @@ const PostPage = ({ post, onPostReturn, resetInput})=>{
                     }
                 })
             }
-            
-            <span className="right no-underline f6 tc db w4 pv3 bg-animate bg-blue hover-bg-dark-blue white br2 pointer" onClick={()=>{onPostReturn('blog'); resetInput()}}>Return</span>
+            <div className="tr right">
+                <Link to="/blog" className="link dim dark-gray f6 f5-ns dib pointer grow blue b">Return</Link>
+            </div>
             <br />
         </div>
     )

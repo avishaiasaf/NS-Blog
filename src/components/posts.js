@@ -125,6 +125,7 @@ export const posts = [
         The custom record should look something like that:
         `,
         author: 'Avishai Asaf',
+        date: '01/01/2021',
         img: app_rec_title,
         body: [
             {
@@ -187,6 +188,7 @@ export const posts = [
         summary: `How do you implement your customizations to a new environment?
         Using the SuiteCloud Development Framework (SDF) enables you to generate a quick and easy push to the requested environment. `,
         author: 'Avishai Asaf',
+        date: '01/01/2021',
         img: sdf_intro,
         body: [
             {
